@@ -54,3 +54,7 @@ Index html:
 
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Slabo+27px" />
+
+
+Emotion:
+sudo npm install @emotion/core @emotion/styled
