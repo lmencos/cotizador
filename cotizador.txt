@@ -1,0 +1,56 @@
+
+Formulariojs:
+<option value="">-- Seleccione --</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+<option value="2016">2016</option>
+<option value="2015">2015</option>
+<option value="2014">2014</option>
+<option value="2013">2013</option>
+<option value="2012">2012</option>
+
+Index.css
+html {
+  box-sizing: border-box;
+}
+body {
+  background: #e96443;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #904e95, #e96443);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #904e95, #e96443); 
+  font-family: Arial, Helvetica, sans-serif;
+}
+ul {
+  list-style: none;
+  padding: none;
+  margin: none;
+}
+span.resultado {
+  position: relative;
+  width: 100%;
+}
+.resultado-enter {
+  transition: .5s;
+}
+.resultado-enter.resultado-enter-active{
+  transform: translateY(0%);
+}
+.resultado-exit{
+  transform: translateY(0);
+  transition: .5s;
+  position : absolute;
+  left: 0;
+  bottom : 0;
+  right: 0;
+}
+.resultado-exit-active{
+  opacity: 0;
+  transform: translateY(-10%);
+}
+
+Index html:
+
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Slabo+27px" />
