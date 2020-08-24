@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
+
+//*****************************************************************************
 const Campo = styled.div`
   display: flex;
   margin-bottom: 1rem;
@@ -41,18 +43,30 @@ const Boton = styled.button`
     cursor: pointer;
   }
 `;
+const Error = styled.div `
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  width: 91%;
+  text-align: center;
+  border: 1px solid #005CC8;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+`;
+//************************************************************************ */
 
 const Formulario = () => {
-
   //Creamos el objeto vacío para los campos a seleccionar:
   const [ datos, guardarDatos ] = useState({
     marca: '', 
     year: '',
     plan: ''
   })
-
   //Extraemos lo svalores:
   const { marca, year, plan } = datos;
+
+  const [ error, guardarError ] = useState(false);
 
   //Leer datos del formulario y colocarlos en el state
   const obtenerDatos = (e) => {
@@ -62,13 +76,43 @@ const Formulario = () => {
     })
   }
 
+  //Cuando el usuario presione el botón "COTIZAR"
+  const cotizarSeguro = (e) => {
+    e.preventDefault()
+
+    //Validar formulario
+    if(marca.trim() === '' || year.trim()=== '' || plan.trim()===''){
+      guardarError(true);
+      return;
+    }
+    //Resetear estado
+    guardarError(false);
+
+    //Obtener diferencia de años
+
+    //Por cada año hacía atrás restar 3%
+
+    //Americano +15%
+    //Asiático +5%
+    //Europeo +30%
+
+    //Plan básico +20%
+    //plan completo +50%
+
+    //Total
+  }
+
   return ( 
-    <form action="">
+    <form 
+      onSubmit={cotizarSeguro}
+    >
+      { error? <Error>Todos los campos son obligatorios</Error>   :  null }
+
       <Campo>
-        <Label htmlFor="">Marca</Label>
+        <Label htmlFor="">Año</Label>
         <Select 
-          name="marca" 
-          value={marca}
+          name="year" 
+          value={year}
           onChange={obtenerDatos}
         >
           <option value="">-- Seleccione --</option>
@@ -85,10 +129,10 @@ const Formulario = () => {
         </Select>
       </Campo>
       <Campo>
-        <Label htmlFor="">Año</Label>
+        <Label htmlFor="">Marca</Label>
         <Select 
-          name="year" 
-          value={year}
+          name="marca" 
+          value={marca}
           onChange={obtenerDatos}
         >
           <option value="">-- Seleccione --</option>
@@ -117,7 +161,7 @@ const Formulario = () => {
         />Completo
       </Campo>
 
-      <Boton type="button" >Cotizar</Boton>
+      <Boton type="submit" >Cotizar</Boton>
     </form>
    );
 }
