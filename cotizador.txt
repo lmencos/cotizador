@@ -58,3 +58,6 @@ Index html:
 
 Emotion:
 sudo npm install @emotion/core @emotion/styled
+
+React transition
+sudo npm i react-transition-group
