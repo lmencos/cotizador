@@ -3,6 +3,7 @@ import Header from './components/Header';
 import styled from '@emotion/styled';
 import Formulario from './components/Formulario';
 import Resumen from './components/Resumen';
+import Resultado from './components/Resultado';
 
 const Contenedor = styled.div`
   max-width: 450px;
@@ -13,7 +14,7 @@ const ContenedorFormulario = styled.div`
   background-color: #FFF;
   padding: 3rem;
   border-radius: 6px;
-`
+`;
 
 function App() {
   // 
@@ -27,7 +28,7 @@ function App() {
   });
 
   //Extraer datos
-  const { datos } = resumen;
+  const { datos, cotizacion } = resumen;
 
   return (
     <Contenedor className="App">
@@ -40,6 +41,9 @@ function App() {
       />
       <Resumen
         datos={datos}
+      />
+      <Resultado 
+        cotizacion={cotizacion}
       />
     </ContenedorFormulario>
     </Contenedor>
