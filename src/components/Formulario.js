@@ -18,7 +18,7 @@ const Select = styled.select`
   display: block;
   width: 81%;
   padding: 1rem;
-  border: 1px solid #005CC8;
+  border: 1px solid #00A1C4;
   border-radius: 3px;
   -webkit-appearance: none;
 `;
@@ -56,7 +56,7 @@ const Error = styled.div `
 `;
 //************************************************************************ */
 
-const Formulario = () => {
+const Formulario = ( {guardarResumen} ) => {
   //Creamos el objeto vacío para los campos a seleccionar:
   const [ datos, guardarDatos ] = useState({
     marca: '', 
@@ -103,15 +103,19 @@ const Formulario = () => {
     //Asiático +5%
     //Europeo +30%
     resultado = calcularMarca(marca) * resultado;
-    console.log('resultado1: ', resultado);
+    console.log('año:', year, 'Marca:', marca, 'Subtotal:', resultado);
 
     //Plan básico +20%
     //plan completo +50%
     const incrementoPlan = obtenerPlan(plan);
     resultado = parseFloat( incrementoPlan * resultado ).toFixed(2);
-    console.log('resultado2', resultado)    
+    console.log('Total con el plan', plan, resultado)    
 
     //Total
+    guardarResumen({
+      cotizacion: resultado,
+      datos
+    })
   }
 
   return ( 
@@ -121,7 +125,7 @@ const Formulario = () => {
       { error? <Error>Todos los campos son obligatorios</Error>   :  null }
 
       <Campo>
-        <Label htmlFor="">Año</Label>
+        <Label htmlFor="">Año:</Label>
         <Select 
           name="year" 
           value={year}
@@ -141,7 +145,7 @@ const Formulario = () => {
         </Select>
       </Campo>
       <Campo>
-        <Label htmlFor="">Marca</Label>
+        <Label htmlFor="">Marca:</Label>
         <Select 
           name="marca" 
           value={marca}
