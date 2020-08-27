@@ -56,7 +56,7 @@ const Error = styled.div `
 `;
 //************************************************************************ */
 
-const Formulario = ( {guardarResumen} ) => {
+const Formulario = ( {guardarResumen, guardarCargando} ) => {
   //Creamos el objeto vacío para los campos a seleccionar:
   const [ datos, guardarDatos ] = useState({
     marca: '', 
@@ -111,11 +111,21 @@ const Formulario = ( {guardarResumen} ) => {
     resultado = parseFloat( incrementoPlan * resultado ).toFixed(2);
     console.log('Total con el plan', plan, resultado)    
 
-    //Total
-    guardarResumen({
-      cotizacion: resultado,
-      datos
-    })
+    //Spinner
+    guardarCargando(true);
+    
+    setTimeout(() => {
+      
+      //Despues de 3 segundos pasa a false (elimins spinner)
+      // y agrega los datos
+      guardarCargando(false);
+     
+      //Total
+      guardarResumen({
+        cotizacion: resultado,
+        datos
+      })
+    }, 2100 );
   }
 
   return ( 
